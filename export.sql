@@ -15,6 +15,8 @@ issue.value AS ISSUE,
 volume.value AS VOLUME,
 series.value AS SERIES,
 pages.value AS PAGES,
+publisher.value AS PUBLISHER,
+place.value AS PLACE,
 proceedingsTitle.value AS PROCEEDINGS,
 bookTitle.value AS BOOK,
 abstract.value AS ABSTRACT,
@@ -82,6 +84,14 @@ LEFT JOIN
 itemDataValues pub
 ON
 pub.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'publicationTitle' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
+LEFT JOIN
+itemDataValues publisher
+ON
+publisher.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'publisher' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
+LEFT JOIN
+itemDataValues place
+ON
+place.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'place' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
 LEFT JOIN
 itemDataValues d
 ON
