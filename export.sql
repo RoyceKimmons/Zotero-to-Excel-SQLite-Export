@@ -142,43 +142,43 @@ archiveLocation.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.
 LEFT JOIN
 creatorData c1
 ON
-c1.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID LIMIT 0,1) LIMIT 1)
+c1.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 0,1) LIMIT 1)
 LEFT JOIN
 creatorTypes ct1
 ON
-ct1.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID LIMIT 0,1)
+ct1.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 0,1)
 LEFT JOIN
 creatorData c2
 ON
-c2.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID LIMIT 1,1) LIMIT 1)
+c2.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 1,1) LIMIT 1)
 LEFT JOIN
 creatorTypes ct2
 ON
-ct2.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID LIMIT 1,1)
+ct2.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 1,1)
 LEFT JOIN
 creatorData c3
 ON
-c3.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID LIMIT 2,1) LIMIT 1)
+c3.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 2,1) LIMIT 1)
 LEFT JOIN
 creatorTypes ct3
 ON
-ct3.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID LIMIT 2,1)
+ct3.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 2,1)
 LEFT JOIN
 creatorData c4
 ON
-c4.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID LIMIT 3,1) LIMIT 1)
+c4.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 3,1) LIMIT 1)
 LEFT JOIN
 creatorTypes ct4
 ON
-ct4.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID LIMIT 3,1)
+ct4.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 3,1)
 LEFT JOIN
 creatorData c5
 ON
-c5.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID LIMIT 4,1) LIMIT 1)
+c5.creatorDataID = (SELECT creatorDataID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 4,1) LIMIT 1)
 LEFT JOIN
 creatorTypes ct5
 ON
-ct5.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID LIMIT 4,1)
+ct5.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 4,1)
 LEFT JOIN
 tags t1
 ON
