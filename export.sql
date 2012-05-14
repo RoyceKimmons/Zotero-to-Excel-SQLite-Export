@@ -20,6 +20,8 @@ place.value AS PLACE,
 proceedingsTitle.value AS PROCEEDINGS,
 bookTitle.value AS BOOK,
 university.value AS UNIVERSITY,
+archiveName.value AS ARCHIVE_NAME,
+archiveLocation.value AS ARCHIVE_LOCATION,
 abstract.value AS ABSTRACT,
 c1.firstName AS AUTHOR_1_FIRST,
 c1.lastName AS AUTHOR_1_LAST,
@@ -129,6 +131,14 @@ LEFT JOIN
 itemDataValues university
 ON
 university.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'university' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
+LEFT JOIN
+itemDataValues archiveName
+ON
+archiveName.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'archive' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
+LEFT JOIN
+itemDataValues archiveLocation
+ON
+archiveLocation.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'archiveLocation' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
 LEFT JOIN
 creatorData c1
 ON
