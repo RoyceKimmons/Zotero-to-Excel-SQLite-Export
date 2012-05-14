@@ -19,6 +19,7 @@ publisher.value AS PUBLISHER,
 place.value AS PLACE,
 proceedingsTitle.value AS PROCEEDINGS,
 bookTitle.value AS BOOK,
+university.value AS UNIVERSITY,
 abstract.value AS ABSTRACT,
 c1.firstName AS AUTHOR_1_FIRST,
 c1.lastName AS AUTHOR_1_LAST,
@@ -124,6 +125,10 @@ LEFT JOIN
 itemDataValues bookTitle
 ON
 bookTitle.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'bookTitle' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
+LEFT JOIN
+itemDataValues university
+ON
+university.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'university' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
 LEFT JOIN
 creatorData c1
 ON
