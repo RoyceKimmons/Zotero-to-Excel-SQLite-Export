@@ -10,7 +10,8 @@ issn.value AS ISSN,
 isbn.value AS ISBN,
 doi.value AS DOI,
 url.value AS URL,
-pub.value AS PUB,
+pub.value AS PUBLICATION_TITLE,
+journalAbbreviation.value AS JOURNAL_ABBREVIATION,
 issue.value AS ISSUE,
 volume.value AS VOLUME,
 series.value AS SERIES,
@@ -89,6 +90,10 @@ LEFT JOIN
 itemDataValues pub
 ON
 pub.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'publicationTitle' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
+LEFT JOIN
+itemDataValues journalAbbreviation
+ON
+journalAbbreviation.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'journalAbbreviation' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
 LEFT JOIN
 itemDataValues publisher
 ON
