@@ -49,6 +49,8 @@ t3.name AS TAG_3,
 t4.name AS TAG_4,
 i.dateAdded AS DATE_ADDED,
 i.dateModified AS DATE_MODIFIED,
+g.name AS LIBRARY_NAME,
+i.libraryID AS LIBRARY_ID,
 i.key AS ZOTERO_KEY,
 extra.value AS EXTRA
 /* The general FROM statement merely queries the `items` table. This table does not have much information in it, so all the information we want will be added with JOIN commands below. */
@@ -202,6 +204,10 @@ LEFT JOIN
 itemDataValues extra
 ON
 extra.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = (SELECT fieldID FROM fields WHERE fields.fieldName = 'extra' LIMIT 1) AND itemData.itemID=i.itemID LIMIT 1)
+LEFT JOIN
+groups g
+ON
+g.libraryID = i.libraryID
 /* End JOIN statements. */
 /* Optional JOIN Statements. */
 /* This is an optional JOIN statement to select for a specific collection. To only show a specific collection in your output, remove the double-hyphen from the beginning of the statement and replace the collectionName value (e.g. "Instructional Design") with the name of your desired collection (encased by quotes). */
@@ -211,6 +217,8 @@ extra.valueID = (SELECT itemData.valueID FROM itemData WHERE itemData.fieldID = 
 WHERE deletedItems.itemID IS NULL
 /* If you would like to add any additional selection criteria, this is the place to do it. Here are some examples that you may wish to use. Merely remove the double-hyphen from the beginning of a condition to make it active in the query. */
 /* Begin optional conditions. */
+/* Only show a specific library. */
+--AND g.name = "UTexas IT Students Public Group"
 /* Only show journal articles. */
 --AND t.typeName = "journalArticle"
 /* Only show items where the first author's last name is Smith. */
