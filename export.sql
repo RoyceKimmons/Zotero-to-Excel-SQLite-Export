@@ -150,7 +150,7 @@ creatorTypes ct1
 ON
 ct1.creatorTypeID = (SELECT creatorTypeID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 0,1)
 LEFT JOIN
-creatos c2
+creators c2
 ON
 c2.creatorID = (SELECT creatorID FROM creators WHERE creatorID = (SELECT creatorID FROM itemCreators WHERE itemID = i.itemID ORDER BY orderIndex LIMIT 1,1) LIMIT 1)
 LEFT JOIN
